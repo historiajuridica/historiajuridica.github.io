@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diez obras sobre el oficio — Historia Jurídica</title>
+<meta name="description" content="Selección de diez obras sobre teoría de la historia, historiografía y herramientas de archivo, publicada por Historia Jurídica en el Día de las y los Historiadores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marfil:#F6F1E6;
+    --marfil-hondo:#EDE5D6;
+    --pardo:#2B1F14;
+    --pardo-medio:#4A3826;
+    --tinta:#3A2C1E;
+    --oro:#9C7430;
+    --oro-claro:#C7A257;
+    --linea:rgba(43,31,20,.18);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{
+    margin:0;
+    background:var(--marfil);
+    color:var(--tinta);
+    font-family:Lora,"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size:18px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- cabecera ---------- */
+  header.marca{
+    background:var(--pardo);
+    color:var(--marfil);
+    padding:3.4rem 1.5rem 3rem;
+    text-align:center;
+    position:relative;
+    border-bottom:3px solid var(--oro);
+  }
+  header.marca::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 24%, rgba(199,162,87,.20), transparent 62%);
+    pointer-events:none;
+  }
+  .marco{
+    position:relative;
+    max-width:820px;margin:0 auto;
+    border:1px solid rgba(199,162,87,.45);
+    padding:2.1rem 1.4rem;
+  }
+  .marco::after{
+    content:"";position:absolute;inset:7px;
+    border:1px solid rgba(199,162,87,.22);
+    pointer-events:none;
+  }
+  .escudo{
+    font-size:.74rem;letter-spacing:.34em;
+    font-family:"DejaVu Sans",system-ui,sans-serif;
+    color:var(--oro-claro);
+    margin:0 0 1.3rem;
+  }
+  h1{
+    font-size:clamp(2rem,5.6vw,3.1rem);
+    font-weight:600;line-height:1.12;margin:0 0 .7rem;
+    background:linear-gradient(115deg,#8A6524 0%,#E3C883 46%,#A87F35 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .fecha{
+    margin:0;font-style:italic;color:rgba(246,241,230,.72);
+    font-size:1.02rem;
+  }
+
+  /* ---------- entrada ---------- */
+  main{max-width:820px;margin:0 auto;padding:0 1.5rem 5rem}
+  .entrada{
+    padding:3rem 0 1.4rem;
+    max-width:64ch;
+  }
+  .entrada p{margin:0 0 1.1rem}
+  .entrada p:first-child::first-letter{
+    float:left;font-size:3.5rem;line-height:.86;
+    padding:.16rem .5rem .1rem 0;color:var(--oro);font-weight:600;
+  }
+
+  /* ---------- buscador ---------- */
+  .filtro{
+    display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;
+    padding:1.2rem 0 2rem;border-top:1px solid var(--linea);
+  }
+  .filtro label{
+    font-family:"DejaVu Sans",system-ui,sans-serif;
+    font-size:.78rem;letter-spacing:.13em;color:var(--pardo-medio);
+  }
+  .filtro input{
+    flex:1 1 16rem;min-width:0;
+    font-family:inherit;font-size:1rem;color:var(--tinta);
+    background:var(--marfil-hondo);
+    border:1px solid var(--linea);border-radius:2px;
+    padding:.62rem .8rem;
+  }
+  .filtro input:focus{outline:2px solid var(--oro);outline-offset:1px}
+  #cuenta{font-size:.9rem;color:var(--pardo-medio);font-style:italic}
+
+  /* ---------- fichas ---------- */
+  ol.fichas{list-style:none;margin:0;padding:0;counter-reset:obra}
+  ol.fichas li{
+    counter-increment:obra;
+    display:grid;grid-template-columns:3.1rem 1fr;gap:0 1.1rem;
+    padding:1.9rem 0;border-top:1px solid var(--linea);
+  }
+  ol.fichas li::before{
+    content:counter(obra,decimal-leading-zero);
+    font-family:"DejaVu Sans",system-ui,sans-serif;
+    font-size:.94rem;letter-spacing:.06em;color:var(--oro);
+    padding-top:.42rem;
+  }
+  .obra h2{
+    font-size:1.24rem;font-weight:600;margin:0 0 .2rem;line-height:1.34;
+  }
+  .obra h2 cite{font-style:italic}
+  .pie{
+    font-size:.93rem;color:var(--pardo-medio);margin:0 0 .75rem;
+  }
+  .obra p.nota{margin:0 0 1rem;max-width:62ch}
+  .descarga{
+    display:inline-block;
+    font-family:"DejaVu Sans",system-ui,sans-serif;
+    font-size:.8rem;letter-spacing:.09em;
+    color:var(--pardo);background:transparent;
+    border:1px solid var(--oro);border-radius:2px;
+    padding:.48rem .95rem;text-decoration:none;
+    transition:background .18s ease,color .18s ease;
+  }
+  .descarga:hover,.descarga:focus-visible{background:var(--oro);color:var(--marfil)}
+  .descarga:focus-visible{outline:2px solid var(--pardo);outline-offset:2px}
+  .marca-abierta{
+    display:inline-block;margin-left:.7rem;font-size:.82rem;
+    color:var(--pardo-medio);font-style:italic;
+  }
+  .sin-resultados{
+    padding:2.4rem 0;font-style:italic;color:var(--pardo-medio);
+  }
+
+  /* ---------- cierre ---------- */
+  .procedencia{
+    margin-top:3rem;padding:1.8rem 1.6rem;
+    background:var(--marfil-hondo);border-left:3px solid var(--oro);
+    font-size:.95rem;max-width:66ch;
+  }
+  .procedencia h2{
+    font-size:1.02rem;margin:0 0 .6rem;font-weight:600;
+  }
+  .procedencia p{margin:0 0 .8rem}
+  .procedencia p:last-child{margin:0}
+  footer{
+    margin-top:3.2rem;padding-top:1.4rem;border-top:1px solid var(--linea);
+    font-size:.9rem;color:var(--pardo-medio);text-align:center;
+  }
+  footer a{color:var(--oro)}
+</style>
+</head>
+<body>
+
+<header class="marca">
+  <div class="marco">
+    <p class="escudo">HISTORIA JURÍDICA</p>
+    <h1>Diez obras sobre el oficio</h1>
+    <p class="fecha">12 de septiembre · Día de las y los Historiadores</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="entrada">
+    <p>La efeméride conmemora la fundación de la Academia Mexicana de la Historia, cuya acta de instalación se fechó en 1919. La fecha se incorporó como conmemoración del gremio en 1996.</p>
+    <p>Para marcarla reunimos diez títulos que no tratan sobre episodios del pasado, sino sobre cómo se construye el conocimiento del pasado: teoría, historiografía, herramientas de archivo y crítica del mito. El orden va de lo general a lo particular, y cierra con una obra del siglo XVII que pone en cuestión quién ha tenido derecho a escribir la historia.</p>
+  </section>
+
+  <div class="filtro">
+    <label for="q">Buscar por autor, título o materia</label>
+    <input id="q" type="search" autocomplete="off" placeholder="paleografía, Florescano, mito…">
+    <span id="cuenta">10 obras</span>
+  </div>
+
+  <ol class="fichas" id="lista">
+
+    <li>
+      <div class="obra">
+        <h2>Enrique Florescano, <cite>La historia y el historiador</cite></h2>
+        <p class="pie">Fondo de Cultura Económica, col. Fondo 2000, 1997</p>
+        <p class="nota">Punto de partida: qué función social cumple quien investiga el pasado y bajo qué condiciones institucionales lo hace.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1aG9E_BnlcNF0egdHNa9ZGtQHd7IIa9P8/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Bernardo Tovar Zambrano, <cite>La historia al final del milenio. Ensayos de historiografía colombiana y latinoamericana</cite>, vol. 1</h2>
+        <p class="pie">Universidad Nacional de Colombia, 1995</p>
+        <p class="nota">Balance historiográfico regional. Útil para situar la producción mexicana en un marco latinoamericano comparado, ejercicio que rara vez se hace.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1r9yz6YEidLNFmFKCeil4EBjCNK3GwCm0/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Enrique Florescano y Pablo Mijangos, <cite>México en sus libros</cite></h2>
+        <p class="pie">Taurus, col. Pensamiento, primera edición, noviembre de 2004</p>
+        <p class="nota">Bibliografía comentada de historia de México, ordenada por periodos y temas, con apartados sobre historia del derecho y sobre la Iglesia y sus funciones sociales y económicas. La pieza más operativa de esta lista para quien arma un estado de la cuestión.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1rekhTq7PN1zjvz_pyeSgETmBtzjKs-9J/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Tomás Marín Martínez, <cite>Paleografía y Diplomática</cite></h2>
+        <p class="pie">Universidad Nacional de Educación a Distancia, Madrid, primera edición, octubre de 2018</p>
+        <p class="nota">Manual de referencia. La diplomática entendida como crítica de autenticidad documental, no como descripción formal.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1IBgiFFuJgqtH8qJ_tBuCYrLWKkzDPZNx/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Rosana Vassallo (coordinadora), <cite>Introducción a la paleografía. Herramientas para la lectura y análisis de documentos antiguos</cite></h2>
+        <p class="pie">Facultad de Humanidades y Ciencias de la Educación, Universidad Nacional de La Plata, Libros de Cátedra, 2019</p>
+        <p class="nota">Obra colectiva en diez capítulos: escritura gótica, procesales y encadenadas, humanística, escribanos en Hispanoamérica y documentos de particulares en archivos eclesiásticos.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1z3I13zEABbuIwNQMBszi7xj_gwUPrnKR/view">Descargar PDF</a>
+        <span class="marca-abierta">Edición de acceso abierto</span>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Eugenia Meyer y Eva Salgado, <cite>Un refugio en la memoria. La experiencia de los exilios latinoamericanos en México</cite></h2>
+        <p class="pie">Facultad de Filosofía y Letras, Universidad Nacional Autónoma de México, y Océano, col. Con una cierta mirada</p>
+        <p class="nota">Resultado de un proyecto colectivo desarrollado en la Facultad entre 1997 y 2001. Investigación bibliohemerográfica y de archivo combinada con historia oral: modelo de cómo se integra el testimonio sin renunciar al aparato documental.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1kNmCO2PlPb7sDqnfnnL-vAuDkZj7dyK7/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Josefina Zoraida Vázquez (coordinadora), <cite>Juárez: historia y mito</cite></h2>
+        <p class="pie">Volumen colectivo de un coloquio internacional del Centro de Estudios Históricos de El Colegio de México</p>
+        <p class="nota">Ejercicio de desmontaje: qué queda de una figura cuando se separa lo documentado de lo conmemorativo.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/15e9JzRxOZhw4WWVpcAi-uTM-hOmVMatG/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Paul Garner, <cite>Porfirio Díaz. Entre el mito y la historia</cite></h2>
+        <p class="pie">2001</p>
+        <p class="nota">Contrapunto del anterior sobre la figura inversa. Leídos juntos muestran que la construcción del héroe y la del villano responden a la misma operación.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1o3-xLSjPCnWobub9ewJN-0Ht1ZAtTzOI/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Eric Van Young, <cite>La otra rebelión. La lucha por la independencia de México</cite></h2>
+        <p class="pie">Ficha por completar</p>
+        <p class="nota">Historia social de la insurgencia a partir de expedientes judiciales: cómo se lee un proceso criminal para reconstruir motivaciones que ningún actor dejó por escrito de manera directa.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1SRDtjC5-ftZ_jNDLwaDlL9dOWiCX3_Hj/view">Descargar PDF</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="obra">
+        <h2>Fernando de Alva Ixtlilxóchitl, <cite>Historia de la nación chichimeca</cite>, en <cite>Obras históricas</cite></h2>
+        <p class="pie">Universidad Nacional Autónoma de México</p>
+        <p class="nota">Escrita en el siglo XVII por un descendiente de la casa de Texcoco: materiales de tradición pictográfica y testimonio oral vertidos a un molde narrativo europeo. El relato se interrumpe en pleno combate por las calzadas de Tenochtitlan; el propio editor advierte al pie que quedó trunco y remite a la decimotercera relación del <cite>Compendio del reino de Texcoco</cite>.</p>
+        <p class="nota"><strong>Estado del archivo:</strong> procede de fotocopias, con subrayados y anotaciones manuscritas a lo largo del texto. Le falta la parte inicial: no incluye portadilla ni preliminares, de modo que el volumen no queda plenamente identificado. El texto de la obra sí corre completo.</p>
+        <a class="descarga" href="https://drive.google.com/file/d/1C5Hn3muPQUPGsAbaLTfvcEwnmJHOck8s/view">Descargar PDF</a>
+      </div>
+    </li>
+
+  </ol>
+
+  <p class="sin-resultados" id="vacio" hidden>Ninguna obra coincide con esa búsqueda.</p>
+
+  <section class="procedencia">
+    <h2>Sobre las fichas y los archivos</h2>
+    <p>Cada ficha se verificó en el interior del propio ejemplar, no en el nombre del archivo. Donde el dato no consta en el libro se dejó el hueco en lugar de completarlo: cuatro obras se publican sin año por esa razón, y la ficha de Van Young queda pendiente de confirmar.</p>
+    <p>Los archivos se sirven desde el Drive del profesor Leopoldo López Valencia, de modo que todas las descargas se comporten igual. La <cite>Introducción a la paleografía</cite> cuenta además con edición institucional de acceso abierto en el repositorio de la Universidad Nacional de La Plata.</p>
+  </section>
+
+  <footer>
+    <p>Historia Jurídica · <a href="https://historiajuridica.github.io">historiajuridica.github.io</a></p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var campo = document.getElementById('q');
+  var lista = document.getElementById('lista');
+  var vacio = document.getElementById('vacio');
+  var cuenta = document.getElementById('cuenta');
+  var items = Array.prototype.slice.call(lista.querySelectorAll('li'));
+
+  function limpia(s){
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  items.forEach(function(li){ li.dataset.texto = limpia(li.textContent); });
+
+  function filtrar(){
+    var q = limpia(campo.value.trim());
+    var visibles = 0;
+    items.forEach(function(li){
+      var coincide = q === '' || li.dataset.texto.indexOf(q) !== -1;
+      li.hidden = !coincide;
+      if(coincide){ visibles++; }
+    });
+    vacio.hidden = visibles !== 0;
+    cuenta.textContent = visibles === 1 ? '1 obra' : visibles + ' obras';
+  }
+
+  campo.addEventListener('input', filtrar);
+})();
+</script>
+
+</body>
+</html>
