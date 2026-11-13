@@ -86,6 +86,9 @@ a.sec:hover{background:#F6EEDD}
 footer{border-top:1px solid var(--rule);margin-top:40px;padding-top:24px;text-align:center;
   color:var(--muted);font-size:.87rem}
 footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-bottom:6px}
+.redes{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:18px 0 2px;
+  font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+.redes .lbl{font-weight:600;margin-right:2px}
 .vacio{display:none;text-align:center;color:var(--muted);padding:34px 0;font-style:italic}
 
 @media(max-width:520px){
@@ -110,6 +113,11 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
     <p class="small">Puede filtrar por serie o buscar por autor, título o materia. Donde existe una edición institucional de acceso abierto o un ejemplar en dominio público, el enlace remite además a esa fuente; véase la nota sobre procedencia al final de la página.</p>
   </section>
 
+  <div class="redes">
+    <span class="lbl">Síganos en Facebook:</span>
+    <a class="btn sec" href="https://www.facebook.com/Leopoldo.L.Valencia" target="_blank" rel="noopener">Leopoldo L. Valencia</a>
+  </div>
+
   <div class="tools">
     <input id="buscar" type="search" placeholder="Buscar por autor, título o materia…" aria-label="Buscar en la biblioteca">
     <span id="cuenta"></span>
@@ -129,6 +137,7 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
       <button class="chip" data-f="cosmovisiones">La muerte en las cosmovisiones prehispánicas y occidentales</button>
       <button class="chip" data-f="indias">La monarquía y el gobierno de las Indias: Corona, territorio y administración</button>
       <button class="chip" data-f="lopezaustin">Publicación extraordinaria · Alfredo López Austin</button>
+      <button class="chip" data-f="inquisicion">La Inquisición: el tribunal, la fe y la sociedad</button>
   </div>
 
   <div id="lista">
@@ -1776,90 +1785,6 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
           </div>
         </div>
       </article>
-      <article data-serie="iglesia" data-fecha="2026-11-26">
-        <div class="n">29</div>
-        <div>
-          <h2>Inquisición novohispana, vol. I</h2>
-          <p class="aut">Noemí Quezada, Martha Eugenia Rodríguez y Marcela Suárez (eds.)</p>
-          <p class="ficha">UNAM, Instituto de Investigaciones Antropológicas, y UAM-Azcapotzalco · México, 1ª ed., 2000 · El ISBN no consta en el archivo</p>
-          <p class="desc">Actas del Primer Congreso Internacional sobre la Inquisición Novohispana (1997): función del tribunal, institución y religiosidad popular.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1B7f2eNn1tcgY-P64dRVtsf7PdGYNcXSo/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">30</div>
-        <div>
-          <h2>Historia de la Inquisición española, volumen I</h2>
-          <p class="aut">Henry Charles Lea</p>
-          <p class="ficha">Presentación de José Antonio Escudero; traducción de Ángel Alcalá y Jesús Tobío; edición y prólogos de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5 (el mismo en los tres volúmenes)</p>
-          <p class="desc">Libros I a III y apéndices: origen del tribunal, sus relaciones con la Corona y el Estado, y su jurisdicción sobre la herejía, las órdenes regulares y los obispos.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/12_4zVmOZLpOA5IyIaLkKRuUUM2rxfRTO/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">31</div>
-        <div>
-          <h2>Historia de la Inquisición española, volumen II</h2>
-          <p class="aut">Henry Charles Lea</p>
-          <p class="ficha">Traducción de Ángel Alcalá y Jesús Tobío; edición de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5</p>
-          <p class="desc">Organización y recursos del tribunal, y práctica procesal: del edicto de gracia y el arresto a la tortura, el juicio, las penas y el auto de fe.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1rPrKeYYxYqgdo6ArW-UN77jOBtZDGqO2/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">32</div>
-        <div>
-          <h2>Historia de la Inquisición española, volumen III</h2>
-          <p class="aut">Henry Charles Lea</p>
-          <p class="ficha">Traducción de Ángel Alcalá y Jesús Tobío; edición de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5</p>
-          <p class="desc">Las esferas de acción del tribunal —judaizantes, moriscos, protestantes, censura, solicitación, brujería— y su decadencia.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1yLmKs8hSw--QJOJtxKcmWmVYVvlYcGdN/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">33</div>
-        <div>
-          <h2>La Inquisición en la época moderna. España, Portugal e Italia, siglos XV-XIX</h2>
-          <p class="aut">Francisco Bethencourt</p>
-          <p class="ficha">Traducción de la edición portuguesa: Federico Palomo · Ediciones Akal · Madrid, 1997 · ISBN 84-460-0831-9 · Original: Librairie Arthème Fayard, 1995</p>
-          <p class="desc">Estudio comparado de las inquisiciones española, portuguesa e italiana: ritos, organización, modos de acción y sistemas de representación.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1DF1HHf0HEzbtuKwZ3PMncx25fpcpIXAE/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">34</div>
-        <div>
-          <h2>La Inquisición</h2>
-          <p class="aut">Ricardo García Cárcel</p>
-          <p class="ficha">Grupo Anaya, col. Biblioteca Básica de Historia, serie Historia (Monografías) · Madrid, 1ª ed., 1990; el ejemplar es la 5ª ed., 2002 · ISBN 84-207-3963-4</p>
-          <p class="desc">Síntesis breve: orígenes, estructura, procedimientos, víctimas, economía y supresión del Santo Oficio, con un capítulo historiográfico.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1izNKxyhwkkwjlO3WcUsyyo1W-4R-PFog/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
-      <article data-serie="iglesia" data-fecha="2026-12-01">
-        <div class="n">35</div>
-        <div>
-          <h2>Mujeres quebradas. La Inquisición y su violencia hacia la heterodoxia en Nueva España</h2>
-          <p class="aut">María Jesús Zamora Calvo (ed.)</p>
-          <p class="ficha">Iberoamericana Vervuert, col. Tiempo Emulado. Historia de América y España, 66 · Madrid y Frankfurt am Main, 2018 · ISBN 978-84-9192-018-2; 978-3-95487-945-8; 978-3-95487-946-5 (e-book)</p>
-          <p class="desc">Doce estudios sobre mujeres procesadas por la Inquisición novohispana: brujería, hechicería, judaísmo y escritura conventual, entre otros asuntos.</p>
-          <div class="acc">
-            <a class="btn pri" href="https://drive.google.com/file/d/1tS_1P9Mp1K-wRqY6QFM4rK1f8xx0HWXz/view" target="_blank" rel="noopener">Descargar PDF</a>
-          </div>
-        </div>
-      </article>
     </section>
     <section class="serie" id="s-borbonica" data-serie="borbonica">
       <h2 class="serie-tit">La Nueva España borbónica: gobierno, Iglesia y sociedad, 1700-1821</h2>
@@ -2961,6 +2886,238 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
         </div>
       </article>
     </section>
+    <section class="serie" id="s-inquisicion" data-serie="inquisicion">
+      <h2 class="serie-tit">La Inquisición: el tribunal, la fe y la sociedad</h2>
+      <p class="serie-sub">Cierre de la Serie 6, en dos tandas: la Inquisición en la Nueva España (17 de noviembre de 2026) y la Inquisición en España y Europa (19 de noviembre de 2026).</p>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">01</div>
+        <div>
+          <h2>Historia del Tribunal del Santo Oficio de la Inquisición en México</h2>
+          <p class="aut">José Toribio Medina · ampliada por Julio Jiménez Rueda</p>
+          <p class="ficha">Ediciones Fuente Cultural (Librería Navarro) · México, 2ª ed. con importantes ampliaciones, 1952 · 1ª ed., Santiago de Chile, 1905 · escaneo del Internet Archive</p>
+          <p class="desc">La historia clásica del tribunal de México: su establecimiento, la sucesión de inquisidores, los autos de fe y las causas, con las ampliaciones de Jiménez Rueda.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1ojw5XNUmAGXVuk-r6TRaganSrL7VBOBA/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">02</div>
+        <div>
+          <h2>Inquisición novohispana, vol. I</h2>
+          <p class="aut">Noemí Quezada, Martha Eugenia Rodríguez y Marcela Suárez (eds.)</p>
+          <p class="ficha">UNAM, Instituto de Investigaciones Antropológicas, y UAM-Azcapotzalco · México, 1ª ed., 2000 · El ISBN no consta en el archivo</p>
+          <p class="desc">Actas del Primer Congreso Internacional sobre la Inquisición Novohispana (1997): función del tribunal, institución y religiosidad popular.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1B7f2eNn1tcgY-P64dRVtsf7PdGYNcXSo/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">03</div>
+        <div>
+          <h2>Mujeres quebradas. La Inquisición y su violencia hacia la heterodoxia en Nueva España</h2>
+          <p class="aut">María Jesús Zamora Calvo (ed.)</p>
+          <p class="ficha">Iberoamericana Vervuert, col. Tiempo Emulado. Historia de América y España, 66 · Madrid y Frankfurt am Main, 2018 · ISBN 978-84-9192-018-2; 978-3-95487-945-8; 978-3-95487-946-5 (e-book)</p>
+          <p class="desc">Doce estudios sobre mujeres procesadas por la Inquisición novohispana: brujería, hechicería, judaísmo y escritura conventual, entre otros asuntos.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1tS_1P9Mp1K-wRqY6QFM4rK1f8xx0HWXz/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">04</div>
+        <div>
+          <h2>Indígenas en la Inquisición Apostólica de fray Juan de Zumárraga</h2>
+          <p class="aut">María Elvira Buelna Serrano</p>
+          <p class="ficha">Universidad Autónoma Metropolitana, Unidad Azcapotzalco, Colección Humanidades, Serie Estudios · México, 1ª ed., 2009 · ISBN 978-607-477-135-0</p>
+          <p class="desc">Los procesos contra indígenas de la etapa apostólica, antes del tribunal de 1571: la figura de Zumárraga como inquisidor, el discurso indígena sobre la religión y la conquista, los ministros del culto y los rituales.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1sGFv1sBQ0qThuA-ESQNR0ukQo0eFgp_P/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">05</div>
+        <div>
+          <h2>La Inquisición en la Nueva Galicia (siglo XVI)</h2>
+          <p class="aut">Rubén Villaseñor Bordes (recopilación, introducción y notas)</p>
+          <p class="ficha">Guadalajara, Jalisco, 1959 · con licencia eclesiástica · escaneo del Internet Archive</p>
+          <p class="desc">Documentos del siglo XVI sobre la actividad inquisitorial en la Nueva Galicia, con introducción y notas del recopilador.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1RSmzaHqFGePnCMXxBy-CdOpX1cA2ESR-/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">06</div>
+        <div>
+          <h2>Locura e Inquisición en Nueva España, 1571-1760</h2>
+          <p class="aut">María Cristina Sacristán</p>
+          <p class="ficha">El Colegio de Michoacán y Fondo de Cultura Económica · México, 1992 · escaneo del Internet Archive</p>
+          <p class="desc">La locura y la actitud de la sociedad novohispana ante los locos, estudiadas a partir de las causas del Santo Oficio, desde el establecimiento del tribunal hasta la llegada de las ideas ilustradas.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1shOae6tkc2QXDtna8Z2xWs9nJm3lKPpn/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-17">
+        <div class="n">07</div>
+        <div>
+          <h2>Los delincuentes de papel. Inquisición y libros en la Nueva España (1571-1820)</h2>
+          <p class="aut">José Abel Ramos Soriano</p>
+          <p class="ficha">Instituto Nacional de Antropología e Historia y Fondo de Cultura Económica, Sección de Obras de Historia · México, 1ª ed., 2011 · 416 pp. · ISBN 978-607-484-137-4</p>
+          <p class="desc">El control inquisitorial de los libros en la Nueva España, del establecimiento del tribunal a su extinción.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1saf94na3gSpjxvVa_5cHYTeUE_FKmVfb/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">08</div>
+        <div>
+          <h2>Historia de la Inquisición española, volumen I</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Presentación de José Antonio Escudero; traducción de Ángel Alcalá y Jesús Tobío; edición y prólogos de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5 (el mismo en los tres volúmenes)</p>
+          <p class="desc">Libros I a III y apéndices: origen del tribunal, sus relaciones con la Corona y el Estado, y su jurisdicción sobre la herejía, las órdenes regulares y los obispos.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/12_4zVmOZLpOA5IyIaLkKRuUUM2rxfRTO/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">09</div>
+        <div>
+          <h2>Historia de la Inquisición española, volumen II</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Traducción de Ángel Alcalá y Jesús Tobío; edición de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5</p>
+          <p class="desc">Organización y recursos del tribunal, y práctica procesal: del edicto de gracia y el arresto a la tortura, el juicio, las penas y el auto de fe.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1rPrKeYYxYqgdo6ArW-UN77jOBtZDGqO2/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">10</div>
+        <div>
+          <h2>Historia de la Inquisición española, volumen III</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Traducción de Ángel Alcalá y Jesús Tobío; edición de Ángel Alcalá · Agencia Estatal Boletín Oficial del Estado · Madrid, 2ª ed., 2020 · ISBN 978-84-340-2644-5</p>
+          <p class="desc">Las esferas de acción del tribunal —judaizantes, moriscos, protestantes, censura, solicitación, brujería— y su decadencia.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1yLmKs8hSw--QJOJtxKcmWmVYVvlYcGdN/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">11</div>
+        <div>
+          <h2>La Inquisición en la época moderna. España, Portugal e Italia, siglos XV-XIX</h2>
+          <p class="aut">Francisco Bethencourt</p>
+          <p class="ficha">Traducción de la edición portuguesa: Federico Palomo · Ediciones Akal · Madrid, 1997 · ISBN 84-460-0831-9 · Original: Librairie Arthème Fayard, 1995</p>
+          <p class="desc">Estudio comparado de las inquisiciones española, portuguesa e italiana: ritos, organización, modos de acción y sistemas de representación.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1DF1HHf0HEzbtuKwZ3PMncx25fpcpIXAE/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">12</div>
+        <div>
+          <h2>La Inquisición</h2>
+          <p class="aut">Ricardo García Cárcel</p>
+          <p class="ficha">Grupo Anaya, col. Biblioteca Básica de Historia, serie Historia (Monografías) · Madrid, 1ª ed., 1990; el ejemplar es la 5ª ed., 2002 · ISBN 84-207-3963-4</p>
+          <p class="desc">Síntesis breve: orígenes, estructura, procedimientos, víctimas, economía y supresión del Santo Oficio, con un capítulo historiográfico.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1izNKxyhwkkwjlO3WcUsyyo1W-4R-PFog/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">13</div>
+        <div>
+          <h2>Herejía y sociedad en el siglo XVI. La Inquisición en Valencia, 1530-1609</h2>
+          <p class="aut">Ricardo García Cárcel</p>
+          <p class="ficha">Ediciones Península (Edicions 62) · Barcelona, 1ª ed., enero de 1980 · ISBN 84-297-1552-5 · escaneo del Internet Archive</p>
+          <p class="desc">El tribunal de Valencia entre 1530 y 1609 y su relación con la sociedad del reino: la persecución de la herejía y el control de los libros, entre otros temas.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1qWetR2kF5c9W8oPMCMK-cNpodOPCdzVz/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">14</div>
+        <div>
+          <h2>L'administration de la foi. L'Inquisition de Tolède (XVIe-XVIIIe siècle)</h2>
+          <p class="aut">Jean-Pierre Dedieu</p>
+          <p class="ficha">Casa de Velázquez, Bibliothèque de la Casa de Velázquez · Madrid, 2ª ed., 1992 (1ª ed., 1989) · ISBN 978-84-86839-36-9; ed. electrónica en OpenEdition Books, 2017, ISBN 978-84-9096-096-7 · en francés</p>
+          <p class="desc">El tribunal de Toledo situado entre las demás instituciones judiciales: el territorio, la teoría y la práctica del derecho inquisitorial, los oficiales y los familiares, las finanzas y la medida de su acción represiva.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/18xBuKWk0m90gqFn-jO4UUrf-jSCGkdIp/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">15</div>
+        <div>
+          <h2>Sotos contra Riquelmes. Regidores, inquisidores y criptojudíos</h2>
+          <p class="aut">Jaime Contreras</p>
+          <p class="ficha">Presentación de Jean-Pierre Dedieu; prefacio de José Luis Gómez Urdáñez · Siglo XXI de España · Madrid, 2ª ed., 2013 (1ª ed., 1992) · ISBN 978-84-323-1640-1</p>
+          <p class="desc">El enfrentamiento de dos linajes en Lorca y Murcia en el siglo XVI: regidores, inquisidores y judaizantes, la obsesión de la limpieza de sangre y el recurso a la Corona y al papado.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1omP3nPTilXTMOsq28752H1Ie3ml3pYh8/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">16</div>
+        <div>
+          <h2>A History of the Inquisition of the Middle Ages, vol. I</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Cambridge University Press, Cambridge Library Collection · reimpresión digital, 2010, de la ed. de 1888 · ISBN 978-1-108-01457-1 · en inglés</p>
+          <p class="desc">Libro I: la Iglesia del siglo XII, el origen de la Inquisición medieval, su organización y su procedimiento.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1QUAmdlSyyJaVKyCY5N9gE1Azr2qKI-sg/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">17</div>
+        <div>
+          <h2>A History of the Inquisition of the Middle Ages, vol. II</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Harper &amp; Brothers · Nueva York, 1901 (copyright 1887) · ejemplar de biblioteca escaneado · en inglés</p>
+          <p class="desc">Libro II: la Inquisición en los distintos territorios de la cristiandad, empezando por el Languedoc.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1_N4DrYqDRldGEKYL3XHSLG6kb0zzFNnW/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">18</div>
+        <div>
+          <h2>A History of the Inquisition of the Middle Ages, vol. III</h2>
+          <p class="aut">Henry Charles Lea</p>
+          <p class="ficha">Cambridge University Press, Cambridge Library Collection · reimpresión digital, 2010, de la ed. de 1888 · ISBN 978-1-108-01485-4 · en inglés</p>
+          <p class="desc">Libro III: los campos especiales de la actividad inquisitorial, de los franciscanos espirituales en adelante.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1-jHAieNI7ELnShLB1S_LgdBQLjPaGInw/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+      <article data-serie="inquisicion" data-fecha="2026-11-19">
+        <div class="n">19</div>
+        <div>
+          <h2>Strix hispánica. Demonología cristiana y cultura folklórica en la España moderna</h2>
+          <p class="aut">Fabián Alejandro Campagne</p>
+          <p class="ficha">Prometeo Libros · Buenos Aires, 1ª ed., 2009 · 387 pp. · ISBN 978-987-574-366-3</p>
+          <p class="desc">Trata más de la demonología y la brujería que del tribunal: la historiografía de la caza de brujas y estudios de caso del mundo ibérico, como la bruja infanticida.</p>
+          <div class="acc">
+            <a class="btn pri" href="https://drive.google.com/file/d/1LNTrrOCpiH3ygFqqabaQS50f7Pc8ui4u/view" target="_blank" rel="noopener">Descargar PDF</a>
+          </div>
+        </div>
+      </article>
+    </section>
 
   </div>
 
@@ -2978,7 +3135,7 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
 
   <footer>
     <div class="marca">Historia Jurídica</div>
-    <div>Biblioteca de descargas · 231 obras · actualizada en Noviembre de 2026</div>
+    <div>Biblioteca de descargas · 243 obras · actualizada en Noviembre de 2026</div>
   </footer>
 </main>
 
@@ -3011,6 +3168,15 @@ footer .marca{font-size:1.25rem;font-style:italic;color:var(--gold);margin-botto
   });
 
   var totalVisible = arts.length;
+
+  // Un filtro de serie sin fichas visibles todavía (todas con fecha futura) no se muestra.
+  var conFichas = {};
+  arts.forEach(function(a){ conFichas[a.getAttribute('data-serie')] = true; });
+  chips = chips.filter(function(c){
+    var f = c.getAttribute('data-f');
+    if (f === 'todas' || conFichas[f]) return true;
+    c.parentNode.removeChild(c); return false;
+  });
 
   function pintar(){
     var q = norm(input.value.trim());
