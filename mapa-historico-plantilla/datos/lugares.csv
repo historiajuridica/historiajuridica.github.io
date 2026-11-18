@@ -1,0 +1,8 @@
+id,nombre,anio,lat,lon,grupo,anio_elevacion,leyenda,etiqueta_dx,etiqueta_dy,etiqueta_ancla,ficha_fecha,ficha_acto,ficha_notas,fuente
+A,Lugar de ejemplo A,1530,19.4336,-99.1332,XVI,1546,Fundación del lugar A,-14,-6,rm,Agosto de 1530,Acto de fundación (ejemplo),Elevado de rango en 1546,Fuente de ejemplo A
+B,Lugar de ejemplo B,1535,17.0732,-96.7266,XVI,,Fundación del lugar B,14,4,lm,1535,Acto de fundación (ejemplo),,Fuente de ejemplo B
+C,Lugar de ejemplo C,1548,21.2360,-104.9020,XVI,1863,Fundación del lugar C,-14,0,rm,1548,Acto de fundación (ejemplo),Cambia de residencia en 1560,Fuente de ejemplo C
+D,Lugar de ejemplo D,1620,24.0277,-104.6532,XVII,,Fundación del lugar D,-14,0,rm,1620,Acto de fundación (ejemplo),,Fuente de ejemplo D
+E,Lugar de ejemplo E,1777,24.8597,-99.5672,XVIII,,Fundación del lugar E,14,0,lm,1777,Acto de fundación (ejemplo),Cambia de residencia en 1791,Fuente de ejemplo E
+F,Lugar de ejemplo F,1863,19.9855,-102.2839,XIX,,Fundación del lugar F,-12,6,rm,1863,Acto de fundación (ejemplo),,Fuente de ejemplo F
+G,Lugar de ejemplo G,1863,20.5888,-100.3899,XIX,,Fundación del lugar G,12,-6,lm,1863,Acto de fundación (ejemplo),,Fuente de ejemplo G

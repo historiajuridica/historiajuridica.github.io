@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITULO__</title>
+<!-- Plantilla de mapa histórico interactivo. Copyright (c) 2026 Leopoldo López Valencia. Código bajo licencia MIT. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Pergamino: mapa a la izquierda, ficha y listas a la derecha; en teléfono, una columna. */
+:root{
+  --paper:#f3ecd9;--land:#efe5cc;--sea:#d8cfb7;--ink:#3b2a1a;--muted:#7d6a52;--oxblood:#80201e;--gold:#a8771a;--line:#c9bb9c;
+  --display:"EB Garamond","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  --body:"EB Garamond","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.45}
+header{padding:20px 24px 8px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;border-bottom:1px solid var(--line)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.4vw,38px);margin:0;text-wrap:balance}
+header .byline{margin:2px 0 0;font-size:17px}
+.sub{color:var(--muted);font-style:italic;margin:0;max-width:70ch}
+main{display:grid;grid-template-columns:minmax(0,1fr) 380px}
+@media (max-width:980px){main{grid-template-columns:1fr}}
+.mapcol{display:flex;flex-direction:column;border-right:1px solid var(--line);min-width:0;position:sticky;top:0;align-self:start}
+@media (max-width:980px){.mapcol{position:static}}
+.mapwrap{position:relative;background:var(--sea);touch-action:none}
+svg#map{display:block;width:100%;height:auto;cursor:grab;user-select:none}
+svg#map.drag{cursor:grabbing}
+.zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px}
+.zoom button,.ctrl button{font:inherit;font-size:16px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:4px;min-width:36px;height:36px;cursor:pointer}
+.zoom button:hover,.ctrl button:hover{border-color:var(--gold)}
+button:focus-visible,input:focus-visible,.item:focus-visible,.chip:focus-visible,.pt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.yearbig{position:absolute;left:16px;bottom:6px;font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,80px);color:#5a3e26;line-height:1;pointer-events:none;font-variant-numeric:tabular-nums}
+.ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 24px;border-top:1px solid var(--line)}
+.ctrl input[type=range]{flex:1 1 260px;accent-color:var(--oxblood)}
+.ctrl .lbl{color:var(--muted);font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:4px 24px 14px;font-size:15px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.ring{width:16px;height:16px;border-radius:50%;border:3px solid var(--gold);display:inline-flex;align-items:center;justify-content:center}
+.ring i{width:8px;height:8px;border-radius:50%;background:var(--oxblood)}
+aside{display:flex;flex-direction:column;min-width:0}
+.card{padding:18px 22px;border-bottom:1px solid var(--line);background:#f7f1e2}
+.card h2{font-family:var(--display);font-weight:500;font-size:28px;margin:0 0 2px;text-wrap:balance}
+.card .latin{font-style:italic;color:var(--muted);margin:0 0 10px}
+.card dl{display:grid;grid-template-columns:118px 1fr;gap:4px 12px;margin:0;font-size:16px}
+.card dt{color:var(--muted)}
+.card dd{margin:0}
+.card .src{margin-top:10px;font-size:14.5px;color:var(--muted);border-top:1px dotted var(--line);padding-top:8px}
+.tag{display:inline-block;font-size:13px;padding:1px 8px;border-radius:10px;border:1px solid currentColor;margin-left:6px;vertical-align:middle}
+.sec{padding:14px 22px 6px}
+.sec h3{font-family:var(--display);font-weight:500;font-size:20px;margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chip{font:inherit;font-size:14px;padding:2px 10px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.list{max-height:360px;overflow:auto;border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:baseline;padding:5px 22px;border-bottom:1px solid #e4d9bf;cursor:pointer;font-size:16px}
+.item:hover,.item.on{background:#ebe1c8}
+.item .y{font-variant-numeric:tabular-nums;color:var(--muted)}
+.dim{opacity:.38}
+footer{padding:16px 24px 28px;border-top:1px solid var(--line);font-size:15px;color:var(--muted);display:grid;gap:8px}
+footer p{margin:0;max-width:110ch}
+footer a{color:var(--oxblood)}
+.cite{background:#f7f1e2;border:1px solid var(--line);border-left:6px solid var(--gold);padding:12px 16px;display:grid;gap:8px;color:var(--ink)}
+.cite h3{font-family:var(--display);font-weight:500;font-size:20px;margin:0}
+.cite button{font:inherit;font-size:15px;justify-self:start;background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:6px 14px;cursor:pointer}
+.cite .msg{color:var(--muted);font-size:14px}
+.born{transform-box:view-box;animation:pop 750ms cubic-bezier(.2,.8,.3,1.2) both}
+.bornlab{animation:fadein 700ms ease-out both}
+.pulse{transform-box:view-box;animation:pulse 1400ms ease-out both}
+.archon{transform-box:view-box;animation:archin 900ms ease-out both}
+.cl{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 900ms ease-out both}
+.halo{animation:fadein 600ms ease-out both}
+@keyframes pop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%{transform:scale(.5);opacity:.85}100%{transform:scale(3.2);opacity:0}}
+@keyframes archin{0%{transform:scale(2.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.cl{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1 id="titulo"></h1><p class="byline" id="byline"></p></div>
+  <p class="sub" id="sub"></p>
+</header>
+<main>
+  <div class="mapcol">
+    <div class="mapwrap">
+      <svg id="map" viewBox="0 0 __W__ __H__" role="img" aria-label="Mapa histórico interactivo">
+        <rect x="-2000" y="-2000" width="8000" height="8000" fill="var(--sea)"/>
+        <g id="grat" stroke="#cbc1a6" stroke-width="1.5" fill="none"></g>
+        <path d="__TIERRA__" fill="var(--land)" fill-rule="evenodd" stroke="#7a6046" stroke-width="1.6" stroke-linejoin="round"/>
+        <g id="rotulos" font-family="EB Garamond,serif" font-style="italic" font-size="30" fill="#8c785f" text-anchor="middle"></g>
+        <g id="marca" font-family="EB Garamond,serif" font-style="italic" font-size="23" fill="#7d6a52" opacity=".8" text-anchor="middle" pointer-events="none"></g>
+        <g id="lines"></g>
+        <g id="pts"></g>
+      </svg>
+      <div class="yearbig" id="yearbig"></div>
+      <div class="zoom">
+        <button id="zin" aria-label="Acercar">+</button>
+        <button id="zout" aria-label="Alejar">−</button>
+        <button id="zreset" aria-label="Ver todo el mapa">⟲</button>
+      </div>
+    </div>
+    <div class="ctrl">
+      <button id="play">▶ Reproducir</button>
+      <label class="lbl" for="year">Año</label>
+      <input type="range" id="year" step="1">
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+  <aside>
+    <div class="card" id="card" aria-live="polite"></div>
+    <div class="sec" id="csec"><h3 id="ctit"></h3></div>
+    <div class="list" id="clist"></div>
+    <div class="sec"><h3>Lugares por año</h3><div class="chips" id="chips"></div></div>
+    <div class="list" id="slist"></div>
+  </aside>
+</main>
+<footer>
+  <div class="cite">
+    <h3>Cómo citar este mapa</h3>
+    <p id="citetxt"></p>
+    <button id="copy" type="button">Copiar la referencia</button> <span id="copymsg" class="msg" aria-live="polite"></span>
+  </div>
+  <p id="fuentes"></p>
+  <p id="credito"></p>
+</footer>
+<script>
+const D=__DATOS__;const CFG=D.cfg;
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const COL=k=>(CFG.grupos[k]||{}).color||'#80201e';
+const BY={};D.lugares.forEach(s=>BY[s.id]=s);
+const Y0=CFG.anio_inicio,Y1=CFG.anio_fin;
+let st={year:Y1,sel:D.lugares[0]&&D.lugares[0].id,conc:null,anim:null,hold:new Set(),holdArch:new Set(),sig:new Set(Object.keys(CFG.grupos))};
+// textos fijos
+document.getElementById('titulo').textContent=CFG.titulo;
+document.getElementById('byline').textContent=[CFG.autor,CFG.institucion].filter(Boolean).join(' · ');
+document.getElementById('sub').textContent=CFG.subtitulo||'';
+document.getElementById('ctit').textContent=CFG.etiqueta_conexiones||'Conexiones';
+if(!D.conexiones.length){document.getElementById('csec').hidden=true;document.getElementById('clist').hidden=true;}
+const yr=document.getElementById('year');yr.min=Y0;yr.max=Y1;yr.value=Y1;
+document.getElementById('grat').innerHTML=D.grat.map(g=>`<line x1="${g[0]}" y1="${g[1]}" x2="${g[2]}" y2="${g[3]}"/>`).join('');
+document.getElementById('rotulos').innerHTML=D.rotulos.map(r=>`<text x="${r.x}" y="${r.y}">${esc(r.t)}</text>`).join('');
+const CR=`© ${CFG.anio_copyright} ${CFG.autor}`;
+if(D.marca)document.getElementById('marca').innerHTML=[CR,CFG.institucion,CFG.licencia_contenido].filter(Boolean).map((t,i)=>`<text x="${D.marca[0]}" y="${D.marca[1]+42+i*28}">${esc(t)}</text>`).join('');
+document.getElementById('legend').innerHTML=Object.entries(CFG.grupos).map(([k,g])=>`<span><i class="dot" style="background:${g.color}"></i>${esc(g.etiqueta)}</span>`).join('')+(D.lugares.some(s=>s.elev)?`<span><i class="ring"><i></i></i>${esc(CFG.etiqueta_elevacion||'')}</span>`:'');
+document.getElementById('fuentes').innerHTML='Fuentes: '+esc(CFG.fuentes||'');
+document.getElementById('credito').innerHTML=`${esc(CR)}${CFG.institucion?' · '+esc(CFG.institucion):''} · Contenido bajo licencia <a href="${esc(CFG.licencia_url)}">${esc(CFG.licencia_contenido)}</a>. Hecho con la plantilla de mapas históricos de Leopoldo López Valencia (código bajo licencia MIT).`;
+const m=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];const d=new Date();
+document.getElementById('citetxt').innerHTML=`${esc(CFG.autor)}, <i>${esc(CFG.titulo)}</i> [mapa interactivo], ${CFG.anio_copyright}, en ${esc(CFG.url_publica)}, consultado el ${d.getDate()} de ${m[d.getMonth()]} de ${d.getFullYear()}.`;
+// animaciones de aparición
+const born={},bornA={};let concBorn=0,concPrev=null,firstRender=true;const now=()=>performance.now();
+function age(map,id,on){if(!on){delete map[id];return 1e9;}if(!(id in map))map[id]=firstRender?-1e9:now();return now()-map[id];}
+function where(s,y){if(st.anim&&st.anim.id===s.id){const A=st.anim,p=A.p;return{x:A.from.x+(A.to.x-A.from.x)*p,y:A.from.y+(A.to.y-A.from.y)*p,lab:A.to.lab};}
+  let cur=s.pos[0];s.pos.forEach(p=>{if(y>=p[0])cur=p});return{x:cur[1],y:cur[2],lab:cur[3]};}
+const anchor=a=>({l:'start',r:'end',m:'middle'}[a[0]]||'start'),base=a=>({m:'middle',b:'auto',t:'hanging'}[a[1]]||'middle');
+function render(){
+  const y=st.year;document.getElementById('yearbig').textContent=y;yr.value=y;let h='';
+  D.lugares.forEach(s=>{
+    if(st.hold.has(s.id))return;const vis=y>=s.anio;
+    if(!vis){age(born,s.id,false);age(bornA,s.id,false);return;}
+    const w=where(s,y),off=s.off,dimmed=!st.sig.has(s.grupo),isA=s.elev&&y>=s.elev&&!st.holdArch.has(s.id),sel=!st.conc&&st.sel===s.id;
+    const ag=age(born,s.id,true),aa=age(bornA,s.id,isA),D1=ag<1500?`style="transform-origin:${w.x}px ${w.y}px;animation-delay:${-ag}ms"`:'';
+    h+=`<g class="pt${dimmed?' dim':''}" data-id="${esc(s.id)}" tabindex="0" role="button" aria-label="${esc(w.lab)}" style="cursor:pointer">`;
+    if(sel)h+=`<circle cx="${w.x}" cy="${w.y}" r="24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>`;
+    if(isA)h+=`<circle cx="${w.x}" cy="${w.y}" r="14" fill="none" stroke="var(--gold)" stroke-width="4" ${aa<1000?`class="archon" style="transform-origin:${w.x}px ${w.y}px;animation-delay:${-aa}ms"`:''}/>`;
+    if(ag<1500)h+=`<circle class="pulse" ${D1} cx="${w.x}" cy="${w.y}" r="10" fill="none" stroke="${COL(s.grupo)}" stroke-width="2.5"/>`;
+    h+=`<g ${ag<1500?`class="born" ${D1}`:''}><circle cx="${w.x}" cy="${w.y}" r="9" fill="#faf5e6"/><circle cx="${w.x}" cy="${w.y}" r="7" fill="${COL(s.grupo)}"/></g><circle cx="${w.x}" cy="${w.y}" r="18" fill="transparent"/>`;
+    h+=`<text x="${w.x+off[0]}" y="${w.y+off[1]}" text-anchor="${anchor(off[2])}" dominant-baseline="${base(off[2])}" font-family="EB Garamond,serif" font-size="${isA?27:26}" font-weight="${isA?700:400}" fill="#3b2a1a" paint-order="stroke" stroke="#efe5cc" stroke-width="5" stroke-linejoin="round" ${ag<1500?`class="bornlab" style="animation-delay:${250-ag}ms"`:''}>${esc(w.lab)}</text></g>`;
+  });
+  document.getElementById('pts').innerHTML=h;
+  let L='';
+  if(st.conc!==concPrev){concPrev=st.conc;concBorn=firstRender?-1e9:now();}
+  if(st.conc){const c=D.conexiones.find(c=>c.id===st.conc),a=where(BY[c.centro],c.anio),ca=now()-concBorn;
+    L+=`<circle class="halo" style="animation-delay:${-ca}ms" cx="${a.x}" cy="${a.y}" r="30" fill="none" stroke="var(--gold)" stroke-width="3" opacity=".7"/>`;
+    c.destinos.forEach((k,i)=>{const b=where(BY[k],c.anio);L+=`<line class="cl" pathLength="1" style="animation-delay:${300+i*220-ca}ms" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" opacity=".85"/>`;});}
+  if(st.anim){const A=st.anim,p=A.p,cx=A.from.x+(A.to.x-A.from.x)*p,cy=A.from.y+(A.to.y-A.from.y)*p,Ln=Math.hypot(A.to.x-A.from.x,A.to.y-A.from.y);
+    L+=`<circle cx="${A.from.x}" cy="${A.from.y}" r="9" fill="none" stroke="var(--oxblood)" stroke-width="2.5"/><line x1="${A.from.x}" y1="${A.from.y}" x2="${cx}" y2="${cy}" stroke="var(--oxblood)" stroke-width="3.5" stroke-dasharray="9 7" stroke-linecap="round"/>`;
+    if(Ln>34){const a=Math.atan2(A.to.y-A.from.y,A.to.x-A.from.x),hx=cx-Math.cos(a)*14,hy=cy-Math.sin(a)*14;L+=`<polygon points="${hx},${hy} ${hx-16*Math.cos(a-.5)},${hy-16*Math.sin(a-.5)} ${hx-16*Math.cos(a+.5)},${hy-16*Math.sin(a+.5)}" fill="var(--oxblood)"/>`;}
+    if(A.cap)L+=`<text x="${A.to.x}" y="${A.to.y+(A.to.y>=A.from.y?44:-30)}" text-anchor="middle" font-family="EB Garamond,serif" font-style="italic" font-size="26" fill="#80201e" paint-order="stroke" stroke="#efe5cc" stroke-width="5">${esc(A.cap)}</text>`;}
+  document.getElementById('lines').innerHTML=L;
+  card();lists();firstRender=false;
+}
+function card(){
+  const el=document.getElementById('card');
+  if(st.conc){const c=D.conexiones.find(c=>c.id===st.conc);
+    el.innerHTML=`<h2>${esc(c.nombre)}</h2><p class="latin">Centro: ${esc(where(BY[c.centro],c.anio).lab)}</p><dl>${c.fechas?`<dt>Fechas</dt><dd>${esc(c.fechas)}</dd>`:''}<dt>Destinos</dt><dd>${c.destinos.map(k=>esc(where(BY[k],c.anio).lab)).join(', ')}</dd>${c.nota?`<dt>Nota</dt><dd>${esc(c.nota)}</dd>`:''}</dl>`;return;}
+  const s=BY[st.sel];if(!s){el.innerHTML='';return;}const g=CFG.grupos[s.grupo]||{};
+  const tras=s.pos.slice(1).map(p=>`${p[0]}: ${p[3]}`).join('; ');
+  el.innerHTML=`<h2>${esc(s.nombre)}${g.etiqueta?`<span class="tag" style="color:${COL(s.grupo)}">${esc(g.etiqueta)}</span>`:''}</h2><dl><dt>Año</dt><dd>${s.anio}</dd>${s.ficha.map(r=>`<dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd>`).join('')}${tras?`<dt>Traslados</dt><dd>${esc(tras)}</dd>`:''}</dl>${s.fuente?`<p class="src">Fuente: ${esc(s.fuente)}</p>`:''}`;
+}
+function lists(){
+  document.getElementById('clist').innerHTML=D.conexiones.map(c=>`<div class="item${st.conc===c.id?' on':''}" tabindex="0" role="button" data-c="${esc(c.id)}"><span class="y">${c.anio}</span><span>${esc(c.nombre)}</span></div>`).join('');
+  document.getElementById('chips').innerHTML=Object.entries(CFG.grupos).map(([k,g])=>`<button class="chip" aria-pressed="${st.sig.has(k)}" data-k="${esc(k)}">${esc(g.etiqueta)}</button>`).join('');
+  document.getElementById('slist').innerHTML=[...D.lugares].sort((a,b)=>a.anio-b.anio).filter(s=>st.sig.has(s.grupo)).map(s=>`<div class="item${!st.conc&&st.sel===s.id?' on':''}" tabindex="0" role="button" data-id="${esc(s.id)}"><span class="y">${s.anio}</span><span>${esc(s.nombre)}</span></div>`).join('');
+}
+function pickSede(id){stop();st.sel=id;st.conc=null;if(st.year<BY[id].anio)st.year=BY[id].anio;render();}
+function pickConc(id){stop();st.conc=id;st.year=D.conexiones.find(c=>c.id===id).anio;render();}
+function act(e,fn){if(e.type==='click'||(e.type==='keydown'&&(e.key==='Enter'||e.key===' '))){e.preventDefault();fn();}}
+['click','keydown'].forEach(ev=>{
+  document.getElementById('pts').addEventListener(ev,e=>{const g=e.target.closest('.pt');if(g&&!moved)act(e,()=>pickSede(g.dataset.id));});
+  document.getElementById('slist').addEventListener(ev,e=>{const i=e.target.closest('.item');if(i)act(e,()=>pickSede(i.dataset.id));});
+  document.getElementById('clist').addEventListener(ev,e=>{const i=e.target.closest('.item');if(i)act(e,()=>pickConc(i.dataset.c));});
+});
+document.getElementById('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const k=b.dataset.k;if(st.sig.has(k)&&st.sig.size>1)st.sig.delete(k);else st.sig.add(k);render();});
+yr.addEventListener('input',e=>{stop();st.year=+e.target.value;st.conc=null;render();});
+// reproducción: se detiene en cada conexión y anima los traslados
+let playing=false,runId=0;const pb=document.getElementById('play');
+const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function stop(){playing=false;runId++;st.anim=null;st.hold.clear();st.holdArch.clear();pb.textContent='▶ Reproducir';}
+async function animMove(s,y,ok){
+  const from=where(s,y-1);let cur=s.pos[0];s.pos.forEach(p=>{if(y>=p[0])cur=p});
+  st.anim={id:s.id,from,to:{x:cur[1],y:cur[2],lab:cur[3]},p:0,cap:cur[4]};const dur=RM?0:1400,t0=now();
+  await new Promise(res=>{function f(t){if(!ok()){res();return;}let p=dur?Math.min(1,(t-t0)/dur):1;st.anim.p=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;render();if(t-t0<dur)requestAnimationFrame(f);else res();}requestAnimationFrame(f);});
+  await sleep(1100);st.anim=null;
+}
+async function play(){
+  const my=++runId,ok=()=>playing&&my===runId;
+  while(ok()&&st.year<Y1){
+    const y=st.year+1;st.year=y;
+    for(const s of D.lugares.filter(s=>s.pos.some((p,i)=>i>0&&p[0]===y))){if(!ok())return;await animMove(s,y,ok);}
+    const news=D.lugares.filter(s=>s.anio===y).map(s=>s.id),arch=D.lugares.filter(s=>s.elev===y).map(s=>s.id);
+    if(news.length>1||arch.length){st.hold=new Set(news.length>1?news:[]);st.holdArch=new Set(arch);render();
+      if(news.length>1)for(const id of news){if(!ok())return;st.hold.delete(id);render();await sleep(RM?0:650);}
+      if(arch.length){if(news.length)await sleep(RM?0:500);st.holdArch.clear();render();await sleep(RM?0:900);}
+    }else render();
+    const cs=D.conexiones.filter(c=>c.anio===y);
+    for(const c of cs){if(!ok())return;st.conc=c.id;render();await sleep(RM?2000:300+c.destinos.length*220+2600);}
+    if(cs.length){st.conc=null;render();}
+    await sleep(news.length?(news.length>1?300:750):55);
+  }
+  if(my===runId){stop();render();}
+}
+pb.addEventListener('click',()=>{if(playing){stop();render();return;}st.conc=null;if(st.year>=Y1)st.year=Y0-1;playing=true;pb.textContent='❚❚ Pausa';play();});
+// acercar y desplazar
+const svg=document.getElementById('map');const V0=[0,0,D.W,D.H];let V=[...V0];
+const setV=()=>svg.setAttribute('viewBox',V.join(' '));
+function zoom(f,cx,cy){const nw=Math.min(V0[2],Math.max(D.W/6,V[2]*f)),k=nw/V[2];cx=cx??V[0]+V[2]/2;cy=cy??V[1]+V[3]/2;V=[cx-(cx-V[0])*k,cy-(cy-V[1])*k,nw,V[3]*k];setV();}
+function svgPt(e){const r=svg.getBoundingClientRect();return[V[0]+(e.clientX-r.left)/r.width*V[2],V[1]+(e.clientY-r.top)/r.height*V[3]];}
+document.getElementById('zin').onclick=()=>zoom(.7);document.getElementById('zout').onclick=()=>zoom(1/.7);document.getElementById('zreset').onclick=()=>{V=[...V0];setV();};
+svg.addEventListener('wheel',e=>{e.preventDefault();const p=svgPt(e);zoom(e.deltaY<0?.85:1/.85,p[0],p[1]);},{passive:false});
+let drag=null,moved=false;
+svg.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,v:[...V]};moved=false;});
+window.addEventListener('pointermove',e=>{if(!drag)return;const r=svg.getBoundingClientRect(),dx=(e.clientX-drag.x)/r.width*V[2],dy=(e.clientY-drag.y)/r.height*V[3];if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>4){moved=true;svg.classList.add('drag');}V=[drag.v[0]-dx,drag.v[1]-dy,V[2],V[3]];if(moved)setV();});
+window.addEventListener('pointerup',()=>{drag=null;svg.classList.remove('drag');setTimeout(()=>moved=false,0);});
+document.getElementById('copy').addEventListener('click',async()=>{const el=document.getElementById('citetxt'),msg=document.getElementById('copymsg');
+  try{await navigator.clipboard.writeText(el.innerText);msg.textContent='Referencia copiada.';}
+  catch(e){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);msg.textContent='Quedó seleccionada: cópiela con Ctrl+C o Cmd+C.';}});
+render();
+</script>
+</body>
+</html>

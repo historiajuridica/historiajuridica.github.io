@@ -1,0 +1,30 @@
+{
+  "titulo": "Mapa histórico de ejemplo, 1520-1900",
+  "subtitulo": "Datos de ejemplo. Sustituya las tablas de la carpeta datos/ por las suyas.",
+  "autor": "Nombre del autor",
+  "institucion": "Institución",
+  "anio_copyright": 2026,
+  "licencia_contenido": "CC BY-NC-ND 4.0",
+  "licencia_url": "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es",
+  "url_publica": "https://usuario.github.io/mi-mapa/",
+  "fuentes": "Indique aquí las fuentes de los datos.",
+  "anio_inicio": 1520,
+  "anio_fin": 1900,
+  "proyeccion": {"lat_centro": 23.5, "lon_centro": -102.0, "escala": 60, "ancho": 1920, "alto": 1080},
+  "grupos": {
+    "XVI":  {"etiqueta": "s. XVI",  "color": "#80201e"},
+    "XVII": {"etiqueta": "s. XVII", "color": "#b0671c"},
+    "XVIII":{"etiqueta": "s. XVIII","color": "#3f6e5a"},
+    "XIX":  {"etiqueta": "s. XIX",  "color": "#2f4a7a"}
+  },
+  "etiqueta_elevacion": "Lugar elevado de rango",
+  "etiqueta_conexiones": "Conexiones",
+  "rotulos_mar": [
+    {"texto": "Golfo de México", "lat": 25.0, "lon": -93.5},
+    {"texto": "Océano Pacífico", "lat": 18.0, "lon": -110.0}
+  ],
+  "marca_agua_en": {"lat": 25.0, "lon": -93.5},
+  "fuente_ttf": "",
+  "fuente_ttf_negrita": "",
+  "fuente_ttf_cursiva": ""
+}

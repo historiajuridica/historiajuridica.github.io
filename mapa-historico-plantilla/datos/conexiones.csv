@@ -1,0 +1,3 @@
+id,nombre,anio,fechas,centro,destinos,nota
+c1,Primera reunión de ejemplo,1585,1585,A,B;C,Ejemplo de conexión entre un centro y sus dependientes
+c2,Segunda reunión de ejemplo,1896,8 sep - 1 oct 1896,A,B;C;F;G,
